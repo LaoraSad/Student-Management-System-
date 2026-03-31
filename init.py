@@ -15,6 +15,7 @@ while finish:
         print("3.Find a student")
         print("4.Update a student's information")
         print("5.Delete students.")
+        print("6.exit")
 
         choose: str = input("Select an option: ").strip()
 
@@ -46,13 +47,17 @@ while finish:
                         print("-"*40)
     
             case "3":
+                find: int = int(input("Enter the cedula of the student you want to find: "))
+
                 if len(student) <= 0:
                     print("You don't have any registered students yet.")
+                    continue
                 
                 for key, dato in student.items():
-                    find: int = int(input("Enter the cedula of the student you want to find: "))
-                    find_student = student.get(find, "not fund")
-                    print(student[find][cedula])
+                    if dato["cedula"] == find:
+                        print(f"{key} name: {dato["name"]} last name: {dato["last_name"]} age: {dato["age"]} program: {dato["program"]} status: {dato["status"]}")
+                        break
+                    print("Stundent not found")
             
             case "4":
                 option: bool = False
@@ -179,7 +184,10 @@ while finish:
                 print("-"*40)
                 print("Student delete")
                 print("-"*40)
-
+                
+            case "6":
+                finish = False
+                print("see you later")
             case _:
                 print(" ⚠️  Option not available, please try again")
 
